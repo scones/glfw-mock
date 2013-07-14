@@ -13,7 +13,6 @@
 
 
 GLFWAPI int GLFWAPIENTRY glfwOpenWindow (int width, int height, int redbits, int greenbits, int bluebits, int alphabits, int depthbits, int stencilbits, int mode) {
-std::cout << "glfwOpenWindow()" << std::endl;
   stubber::register_call(
     "glfwOpenWindow",
     {
@@ -28,7 +27,6 @@ std::cout << "glfwOpenWindow()" << std::endl;
       {"mode", t_arg(mode)}
     }
   );
-  return 0;
+  return (width > 0) ? GL_TRUE : GL_FALSE;
 }
-
 

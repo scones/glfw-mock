@@ -1,24 +1,28 @@
 CC         = g++
-INCLUDES   = -IC:/msys/include -IC:/boost/include
-CFLAGS     = $(INCLUDES) -c -Wall -DGLEW_STATIC -pedantic -g -std=c++11 -pg -D GLM_COMPONENT_CXX11 -DSTAND_ALONE -fexec-charset=UTF-8 -finput-charset=UTF-8
+INCLUDES   = -IC:/msys/include
+CFLAGS     = $(INCLUDES) -O3 -c -Wall -pedantic -std=c++11 -fexec-charset=UTF-8 -finput-charset=UTF-8
 
-LIB_PATHS  = -LC:/boost/lib -L../
-LIBS       = -lgmon -lboost_unit_test_framework-mgw48-mt-1_53 -g -pg -static -lglfw_mock
-LDFLAGS    = ${LIB_PATHS} ${LIBS} -v
+LIB_PATHS  = -L../lib -LC:/msys/lib
+LIBS       = -static -lglfw_mock -lgtest_all
+LDFLAGS    = ${LIB_PATHS} ${LIBS}
 
 
 SOURCES    = \
-  main.cpp\
-  ../stubber.cpp
+  src/main.cpp\
+  ../src/stubber.cpp \
+  src/open_window.cpp
 
 
 OBJECTS    = $(SOURCES:.cpp=.o)
-TARGET     = lib_glfw_mock_tests.exe
+TARGET     = bin/lib_glfw_mock_tests.exe
+
 
 all: check
 
+
 check: $(SOURCES) $(TARGET)
-	$(TARGET) --log_level=test_suite
+	@echo ""
+	./$(TARGET)
 	@echo ""
 
 
@@ -27,7 +31,8 @@ $(TARGET): $(OBJECTS)
 
 
 .cpp.o:
-	$(CC) ${CFLAGS} $< -o $@ #$(LDFLAGS)
+	$(CC) ${CFLAGS} $< -o $@
+
 
 clean:
 	rm -f $(OBJECTS)

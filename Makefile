@@ -1,34 +1,38 @@
 CC             = g++
-INCLUDES       = -IC:/msys/include -IC:/boost/include
-CFLAGS         = $(INCLUDES) -c -Wall -pedantic -g -std=c++11 -pg -fexec-charset=UTF-8 -finput-charset=UTF-8
+INCLUDES       = -IC:/msys/include
+CFLAGS         = $(INCLUDES) -O3 -c -Wall -pedantic -std=c++11 -fexec-charset=UTF-8 -finput-charset=UTF-8
 
 LIB_PATHS      = -LC:/msys/lib
-LIBS           = -lgmon -g -pg
-LDFLAGS        = ${LIB_PATHS} ${LIBS} -v
+LIBS           = 
+LDFLAGS        = ${LIB_PATHS} ${LIBS}
 
 
 SOURCES        = \
-	glfw.cpp \
-	stubber.cpp
+	src/glfw.cpp \
+	src/stubber.cpp
 
 OBJECTS        = $(SOURCES:.cpp=.o)
-STATIC_TARGET  = libglfw_mock.a
-SHARED_TARGET  = libglfw_mock.dll
+STATIC_TARGET  = lib/libglfw_mock.a
+#SHARED_TARGET  = lib/libglfw_mock.dll
 
-all: $(SOURCES) $(STATIC_TARGET) $(SHARED_TARGET) check
+all: $(SOURCES) $(STATIC_TARGET) check $(SHARED_TARGET)
 
 
 $(STATIC_TARGET): $(OBJECTS)
-	ar  rcs $@ $(OBJECTS)
+	ar rcs $@ $(OBJECTS)
+
 
 $(SHARED_TARGET): $(OBJECTS)
-	$(CC) -shared $(OBJECTS) -o $@ $(LDFLAGS)
+#	$(CC) -shared $(OBJECTS) -o $@ $(LDFLAGS)
 
-check: $(OBJECTS)
+
+check: $(STATIC_TARGET)
 	make -C ./tests check
 
+
 .cpp.o:
-	$(CC) ${CFLAGS} $< -o $@ #$(LDFLAGS)
+	$(CC) ${CFLAGS} $< -o $@
+
 
 clean:
 	make -C ./tests clean

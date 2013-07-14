@@ -91,12 +91,8 @@ class stubber {
     function_call(std::string const & name,
         std::initializer_list<t_name_argument> const & arguments) :
         m_name(name), m_arguments(t_argument_map()) {
-      std::cout << "function_call()" << std::endl;
       for (auto const & item : arguments) {
-//        m_arguments[std::get<0>(item)] = std::get<1>(item);
-        std::cout << item.first << ": " << item.second << std::endl;
         m_arguments.insert(item);
-//        m_arguments[item.first] = item.second;
       }
     }
     ~function_call() = default;
@@ -152,7 +148,6 @@ class stubber {
   static void register_call(std::string const & name,
       std::initializer_list<function_call::t_name_argument> const & arguments)
   {
-    std::cout << "register_call()" << std::endl;
     s_stub.m_function_calls.push_back(function_call(name, arguments));
   }
 
@@ -165,7 +160,6 @@ class stubber {
 
 
   stubber() : m_function_calls(t_function_call_list()) {
-    std::cout << "stubber()" << std::endl;
   }
   ~stubber() = default;
 
@@ -173,19 +167,6 @@ class stubber {
   t_function_call_list m_function_calls;
 };
 
-
-struct fixture {
-  fixture() :
-      stub(stubber::get_stub()) {
-    std::cout << "setup up!" << std::endl;
-  }
-  ~fixture() {
-    std::cout << "tear down!" << std::endl;
-    stubber::reset();
-  }
-
-  stubber* stub;
-};
 
 typedef stubber::function_call::argument t_arg;
 
