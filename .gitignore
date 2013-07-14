@@ -1,0 +1,16 @@
+# Compiled Object files
+*.o
+
+# Compiled Dynamic libraries
+*.dll
+
+# Compiled Static libraries
+*.a
+
+# exclude eclipse project files
+.cproject
+.project
+.settings
+
+# exclude binaries
+*.exe
