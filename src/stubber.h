@@ -177,7 +177,7 @@ class stubber {
   static double get_double_result(std::string const & function_name) {
     double result;
     try {
-      result = s_stub.m_function_int_results.at(function_name);
+      result = s_stub.m_function_double_results.at(function_name);
     } catch (std::out_of_range const & e) {
       throw std::runtime_error("No result defined for '" + function_name + "(..)'");
     }

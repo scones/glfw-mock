@@ -48,7 +48,7 @@ GLFWAPI void GLFWAPIENTRY glfwSwapBuffers( void ) {
 
 GLFWAPI int  GLFWAPIENTRY glfwGetWindowParam( int param ) {
   stubber::register_call(
-    "glfwOpenWindow",
+    "glfwGetWindowParam",
     {
       {"param", t_arg(param)}
     }
