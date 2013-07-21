@@ -12,6 +12,12 @@
 
 class open_window_test : public base_fixture {
 protected:
+
+  void SetUp() {
+    base_fixture::SetUp();
+    stubber::register_function_int_result("glfwOpenWindow", GL_TRUE);
+  }
+
   int call(int width, int height, int redbits, int greenbits, int bluebits, int alphabits, int depthbits, int stencilbits, int mode) {
     return glfwOpenWindow(width, height, redbits, greenbits, bluebits, alphabits, depthbits, stencilbits, mode);
   }
@@ -25,6 +31,7 @@ TEST_F(open_window_test, returns_gl_true_with_correct_width) {
 
 
 TEST_F(open_window_test, returns_gl_false_width_incorrect_width) {
+  stubber::register_function_int_result("glfwOpenWindow", GL_FALSE);
   auto result = call(-1,2,3,4,5,6,7,8,9);
   ASSERT_EQ(GL_FALSE, result);
 }
