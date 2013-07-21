@@ -3,6 +3,7 @@
 
 # Compiled Dynamic libraries
 *.dll
+*.so
 
 # Compiled Static libraries
 *.a
