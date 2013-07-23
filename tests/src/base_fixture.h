@@ -10,7 +10,7 @@
 
 #include <gtest/gtest.h>
 
-#include "../../src/stubber.h"
+#include "../../include/stubber.h"
 
 struct base_fixture : public ::testing::Test {
   protected:

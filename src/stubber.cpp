@@ -6,7 +6,7 @@
  */
 
 // base class
-#include "stubber.h"
+#include "../include/stubber.h"
 
 
 stubber stubber::s_stub;

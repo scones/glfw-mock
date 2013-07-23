@@ -5,7 +5,7 @@
  *      Author: scn
  */
 
-#include "stubber.h"
+#include "../include/stubber.h"
 
 #include <GL/glfw.h>
 
