@@ -1,6 +1,6 @@
 CC             = g++
 INCLUDES       = -IC:/msys/include
-CFLAGS         = $(INCLUDES) -O3 -c -Wall -pedantic -std=c++11 -fexec-charset=UTF-8 -finput-charset=UTF-8
+CFLAGS         = $(INCLUDES) -O3 -c -Wall -pedantic -std=c++11 -fexec-charset=UTF-8 -finput-charset=UTF-8 -D_GLIBCXX_HAVE_BROKEN_VSWPRINTF
 
 LIB_PATHS      = -LC:/msys/lib
 LIBS           = 
@@ -24,7 +24,7 @@ SOURCES        = \
 	src/get_joystick_name.cpp \
 	src/get_key.cpp \
 	src/get_monitor_name.cpp \
-	src/get_monitor_physical.cpp \
+	src/get_monitor_physical_size.cpp \
 	src/get_monitor_pos.cpp \
 	src/get_monitors.cpp \
 	src/get_mouse_button.cpp \
@@ -53,14 +53,14 @@ SOURCES        = \
 	src/set_cursor_pos_callback.cpp \
 	src/set_cursor_pos.cpp \
 	src/set_error_callback.cpp \
-	src/set_frambuffer_size_callback.cpp \
+	src/set_framebuffer_size_callback.cpp \
 	src/set_gamma_ramp.cpp \
 	src/set_gamma.cpp \
 	src/set_input_mode.cpp \
 	src/set_key_callback.cpp \
 	src/set_monitor_callback.cpp \
 	src/set_mouse_button_callback.cpp \
-	src/set_scoll_callback.cpp \
+	src/set_scroll_callback.cpp \
 	src/set_time.cpp \
 	src/set_window_close_callback.cpp \
 	src/set_window_focus_callback.cpp \

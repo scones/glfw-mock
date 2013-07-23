@@ -1,27 +1,28 @@
 /*
  * get_version.cpp
  *
- *  Created on: 21.07.2013
+ *  Created on: 23.07.2013
  *      Author: scn
  */
 
 
-#include <GL/glfw.h>
+#include <GLFW/glfw3.h>
 
 #include "base_fixture.h"
-
 
 class get_version_test : public base_fixture {
   protected:
 
-  void call(int *major, int *minor, int *rev) {
-    glfwGetVersion(major, minor, rev);
+  void call(int* major, int* minor, int* rev) {
+    return glfwGetVersion(major, minor, rev);
   }
 };
 
 
 TEST_F(get_version_test, is_reachable) {
-  int major, minor, rev;
+  int major = 1;
+  int minor = 2;
+  int rev = 3;
   call(&major, &minor, &rev);
   auto invocation_count = stub->function_calls().size();
   ASSERT_EQ(1, invocation_count);
@@ -32,7 +33,9 @@ TEST_F(get_version_test, is_reachable) {
 
 
 TEST_F(get_version_test, has_correct_params) {
-  int major, minor, rev;
+  int major = 1;
+  int minor = 2;
+  int rev = 3;
   call(&major, &minor, &rev);
   auto first_invocation = stub->function_calls().front();
   ASSERT_EQ(first_invocation.param("major"), t_arg(&major));

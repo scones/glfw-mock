@@ -11,16 +11,8 @@
 
 #include <iostream>
 
-/*! @brief Returns the primary monitor.
- *
- *  This function returns the primary monitor.  This is usually the monitor
- *  where elements like the Windows task bar or the OS X menu bar is located.
- *
- *  @return The primary monitor, or `NULL` if an error occurred.
- *
- *  @sa glfwGetMonitors
- *
- *  @ingroup monitor
- */
-GLFWAPI GLFWmonitor* glfwGetPrimaryMonitor(void);
+GLFWAPI GLFWmonitor* glfwGetPrimaryMonitor(void) {
+  stubber::register_call("glfwGetPrimaryMonitor", {});
+  return stubber::get_result<GLFWmonitor*>("glfwGetPrimaryMonitor");
+}
 

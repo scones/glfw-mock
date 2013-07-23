@@ -11,16 +11,11 @@
 
 #include <iostream>
 
-/*! @brief Returns the position of the monitor's viewport on the virtual screen.
- *
- *  This function returns the position, in screen coordinates, of the upper-left
- *  corner of the specified monitor.
- *
- *  @param[in] monitor The monitor to query.
- *  @param[out] xpos Where to store the monitor x-coordinate, or `NULL`.
- *  @param[out] ypos Where to store the monitor y-coordinate, or `NULL`.
- *
- *  @ingroup monitor
- */
-GLFWAPI void glfwGetMonitorPos(GLFWmonitor* monitor, int* xpos, int* ypos);
+GLFWAPI void glfwGetMonitorPos(GLFWmonitor* monitor, int* xpos, int* ypos) {
+  stubber::register_call("glfwGetMonitorPos", {
+    {"monitor", t_arg(monitor)},
+    {"xpos", t_arg(xpos)},
+    {"ypos", t_arg(ypos)}
+  });
+}
 

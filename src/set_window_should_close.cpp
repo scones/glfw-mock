@@ -11,18 +11,10 @@
 
 #include <iostream>
 
-/*! @brief Sets the close flag of the specified window.
- *
- *  This function sets the value of the close flag of the specified window.
- *  This can be used to override the user's attempt to close the window, or
- *  to signal that it should be closed.
- *
- *  @param[in] window The window whose flag to change.
- *  @param[in] value The new value.
- *
- *  @remarks This function may be called from secondary threads.
- *
- *  @ingroup window
- */
-GLFWAPI void glfwSetWindowShouldClose(GLFWwindow* window, int value);
+GLFWAPI void glfwSetWindowShouldClose(GLFWwindow* window, int value) {
+  stubber::register_call("glfwSetWindowShouldClose", {
+    {"window", t_arg(window)},
+    {"value", t_arg(value)}
+  });
+}
 

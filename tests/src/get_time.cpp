@@ -1,22 +1,23 @@
 /*
  * get_time.cpp
  *
- *  Created on: 21.07.2013
+ *  Created on: 23.07.2013
  *      Author: scn
  */
 
 
-#include <GL/glfw.h>
+#include <GLFW/glfw3.h>
 
 #include "base_fixture.h"
-
 
 class get_time_test : public base_fixture {
   protected:
 
+  double m_result;
   void SetUp() {
     base_fixture::SetUp();
-    stubber::register_function_double_result("glfwGetTime", 123.456);
+    m_result = 1.3;
+    stubber::register_function_result("glfwGetTime", m_result);
   }
 
   double call() {
@@ -36,6 +37,6 @@ TEST_F(get_time_test, is_reachable) {
 
 
 TEST_F(get_time_test, returns_correctly) {
-  ASSERT_EQ(123.456, call());
+  ASSERT_EQ(m_result, call());
 }
 

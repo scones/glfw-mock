@@ -11,19 +11,11 @@
 
 #include <iostream>
 
-/*! @brief Sets the cursor enter/exit callback.
- *
- *  This function sets the cursor boundary crossing callback of the specified
- *  window, which is called when the cursor enters or leaves the client area of
- *  the window.
- *
- *  @param[in] window The window whose callback to set.
- *  @param[in] cbfun The new callback, or `NULL` to remove the currently set
- *  callback.
- *  @return The previously set callback, or `NULL` if no callback was set or an
- *  error occurred.
- *
- *  @ingroup input
- */
-GLFWAPI GLFWcursorenterfun glfwSetCursorEnterCallback(GLFWwindow* window, GLFWcursorenterfun cbfun);
+GLFWAPI GLFWcursorenterfun glfwSetCursorEnterCallback(GLFWwindow* window, GLFWcursorenterfun cbfun) {
+  stubber::register_call("glfwSetCursorEnterCallback", {
+    {"window", t_arg(window)},
+    {"cbfun", t_arg(cbfun)}
+  });
+  return stubber::get_result<GLFWcursorenterfun>("glfwSetCursorEnterCallback");
+}
 

@@ -11,15 +11,10 @@
 
 #include <iostream>
 
-/*! @brief Returns the monitor that the window uses for full screen mode.
- *
- *  This function returns the handle of the monitor that the specified window is
- *  in full screen on.
- *
- *  @param[in] window The window to query.
- *  @return The monitor, or `NULL` if the window is in windowed mode.
- *
- *  @ingroup window
- */
-GLFWAPI GLFWmonitor* glfwGetWindowMonitor(GLFWwindow* window);
+GLFWAPI GLFWmonitor* glfwGetWindowMonitor(GLFWwindow* window) {
+  stubber::register_call("glfwGetWindowMonitor", {
+    {"window", t_arg(window)}
+  });
+  return stubber::get_result<GLFWmonitor*>("glfwGetWindowMonitor");
+}
 

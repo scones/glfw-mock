@@ -11,15 +11,11 @@
 
 #include <iostream>
 
-/*! @brief Returns the value of an input option for the specified window.
- *
- *  @param[in] window The window to query.
- *  @param[in] mode One of `GLFW_CURSOR`, `GLFW_STICKY_KEYS` or
- *  `GLFW_STICKY_MOUSE_BUTTONS`.
- *
- *  @sa glfwSetInputMode
- *
- *  @ingroup input
- */
-GLFWAPI int glfwGetInputMode(GLFWwindow* window, int mode);
+GLFWAPI int glfwGetInputMode(GLFWwindow* window, int mode) {
+  stubber::register_call("glfwGetInputMode", {
+    {"window", t_arg(window)},
+    {"mode", t_arg(mode)}
+  });
+  return stubber::get_result<int>("glfwGetInputMode");
+}
 

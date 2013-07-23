@@ -1,16 +1,14 @@
 /*
  * terminate.cpp
  *
- *  Created on: 21.07.2013
+ *  Created on: 23.07.2013
  *      Author: scn
  */
 
 
-#include <GL/glfw.h>
-
+#include <GLFW/glfw3.h>
 
 #include "base_fixture.h"
-
 
 class terminate_test : public base_fixture {
   protected:

@@ -11,16 +11,10 @@
 
 #include <iostream>
 
-/*! @brief Returns the user pointer of the specified window.
- *
- *  This function returns the current value of the user-defined pointer of the
- *  specified window.  The initial value is `NULL`.
- *
- *  @param[in] window The window whose pointer to return.
- *
- *  @sa glfwSetWindowUserPointer
- *
- *  @ingroup window
- */
-GLFWAPI void* glfwGetWindowUserPointer(GLFWwindow* window);
+GLFWAPI void* glfwGetWindowUserPointer(GLFWwindow* window) {
+  stubber::register_call("glfwGetWindowUserPointer", {
+    {"window", t_arg(window)}
+  });
+  return stubber::get_result<void*>("glfwGetWindowUserPointer");
+}
 

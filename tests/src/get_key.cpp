@@ -1,32 +1,35 @@
 /*
  * get_key.cpp
  *
- *  Created on: 21.07.2013
+ *  Created on: 23.07.2013
  *      Author: scn
  */
 
 
-#include <GL/glfw.h>
+#include <GLFW/glfw3.h>
 
 #include "base_fixture.h"
-
 
 class get_key_test : public base_fixture {
   protected:
 
+  int m_result;
   void SetUp() {
     base_fixture::SetUp();
-    stubber::register_function_int_result("glfwGetKey", 123);
+    m_result = 3;
+    stubber::register_function_result("glfwGetKey", m_result);
   }
 
-  int call(int key) {
-    return glfwGetKey(key);
+  int call(GLFWwindow* window, int key) {
+    return glfwGetKey(window, key);
   }
 };
 
 
 TEST_F(get_key_test, is_reachable) {
-  call(1);
+  auto window = (GLFWwindow*)5;
+  int key = 1;
+  call(window, key);
   auto invocation_count = stub->function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
@@ -36,13 +39,17 @@ TEST_F(get_key_test, is_reachable) {
 
 
 TEST_F(get_key_test, has_correct_params) {
-  call(2);
+  auto window = (GLFWwindow*)5;
+  int key = 1;
+  call(window, key);
   auto first_invocation = stub->function_calls().front();
-  ASSERT_EQ(first_invocation.param("key"), "2");
+  ASSERT_EQ(first_invocation.param("window"), t_arg(window));
+  ASSERT_EQ(first_invocation.param("key"), t_arg(key));
 }
 
-
 TEST_F(get_key_test, returns_correctly) {
-  ASSERT_EQ(123, call(3));
+  auto window = (GLFWwindow*)5;
+  int key = 1;
+  ASSERT_EQ(m_result, call(window, key));
 }
 

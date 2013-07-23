@@ -11,19 +11,9 @@
 
 #include <iostream>
 
-/*! @brief Hides the specified window.
- *
- *  This function hides the specified window, if it was previously visible.  If
- *  the window is already hidden or is in full screen mode, this function does
- *  nothing.
- *
- *  @param[in] window The window to hide.
- *
- *  @note This function may only be called from the main thread.
- *
- *  @sa glfwShowWindow
- *
- *  @ingroup window
- */
-GLFWAPI void glfwHideWindow(GLFWwindow* window);
+GLFWAPI void glfwHideWindow(GLFWwindow* window) {
+  stubber::register_call("glfwHideWindow", {
+    {"window", t_arg(window)}
+  });
+}
 

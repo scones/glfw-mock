@@ -11,17 +11,11 @@
 
 #include <iostream>
 
-/*! @brief Returns an attribute of the specified window.
- *
- *  This function returns an attribute of the specified window.  There are many
- *  attributes, some related to the window and others to its context.
- *
- *  @param[in] window The window to query.
- *  @param[in] attrib The [window attribute](@ref window_attribs) whose value to
- *  return.
- *  @return The value of the attribute, or zero if an error occurred.
- *
- *  @ingroup window
- */
-GLFWAPI int glfwGetWindowAttrib(GLFWwindow* window, int attrib);
+GLFWAPI int glfwGetWindowAttrib(GLFWwindow* window, int attrib) {
+  stubber::register_call("glfwGetWindowAttrib", {
+    {"window", t_arg(window)},
+    {"attrib", t_arg(attrib)}
+  });
+  return stubber::get_result<int>("glfwGetWindowAttrib");
+}
 

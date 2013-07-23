@@ -11,14 +11,10 @@
 
 #include <iostream>
 
-/*! @brief Returns whether the specified joystick is present.
- *
- *  This function returns whether the specified joystick is present.
- *
- *  @param[in] joy The joystick to query.
- *  @return `GL_TRUE` if the joystick is present, or `GL_FALSE` otherwise.
- *
- *  @ingroup input
- */
-GLFWAPI int glfwJoystickPresent(int joy);
+GLFWAPI int glfwJoystickPresent(int joy) {
+  stubber::register_call("glfwJoystickPresent", {
+    {"joy", t_arg(joy)}
+  });
+  return stubber::get_result<int>("glfwJoystickPresent");
+}
 

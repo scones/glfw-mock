@@ -9,6 +9,7 @@
 #define STUBBER_H_
 
 // project includes
+#include "any.h"
 
 // system includes
 #include <utility>
@@ -134,8 +135,7 @@ class stubber {
     t_argument_map m_arguments;
   };
   typedef std::list<function_call> t_function_call_list;
-  typedef std::map<std::string, int> t_function_int_results;
-  typedef std::map<std::string, double> t_function_double_results;
+  typedef std::map<std::string, any_abstract*> t_function_results;
 
   stubber(stubber&) = delete;
   stubber(stubber&&) = delete;
@@ -146,8 +146,7 @@ class stubber {
 
   static void reset() {
     s_stub.m_function_calls.clear();
-    s_stub.m_function_int_results.clear();
-    s_stub.m_function_double_results.clear();
+    s_stub.m_function_results.clear();
   }
 
   static void register_call(std::string const & name,
@@ -156,28 +155,17 @@ class stubber {
     s_stub.m_function_calls.push_back(function_call(name, arguments));
   }
 
-  static void register_function_int_result(std::string const & function_name, int result) {
-    s_stub.m_function_int_results[function_name] = result;
+  template <class T>
+  static void register_function_result(std::string const & function_name, T result) {
+    s_stub.m_function_results[function_name] = (any_abstract*)new any<T>(result);
   }
 
-  static void register_function_double_result(std::string const & function_name, double result) {
-    s_stub.m_function_double_results[function_name] = result;
-  }
-
-  static int get_int_result(std::string const & function_name) {
-    int result;
+  template <class T>
+  static T get_result(std::string const & function_name) {
+    T result;
     try {
-      result = s_stub.m_function_int_results.at(function_name);
-    } catch (std::out_of_range const & e) {
-      throw std::runtime_error("No result defined for '" + function_name + "(..)'");
-    }
-    return result;
-  }
-
-  static double get_double_result(std::string const & function_name) {
-    double result;
-    try {
-      result = s_stub.m_function_double_results.at(function_name);
+      any_abstract* something = s_stub.m_function_results.at(function_name);
+      result = *(reinterpret_cast<T*>(something->get_value()));
     } catch (std::out_of_range const & e) {
       throw std::runtime_error("No result defined for '" + function_name + "(..)'");
     }
@@ -194,18 +182,15 @@ class stubber {
 
   stubber() :
     m_function_calls(t_function_call_list()),
-    m_function_int_results(t_function_int_results()),
-    m_function_double_results(t_function_double_results())
+    m_function_results(t_function_results())
   {
   }
   ~stubber() = default;
 
   static stubber s_stub;
   t_function_call_list m_function_calls;
-  t_function_int_results m_function_int_results;
-  t_function_double_results m_function_double_results;
+  t_function_results m_function_results;
 };
-
 
 typedef stubber::function_call::argument t_arg;
 

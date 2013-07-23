@@ -11,19 +11,8 @@
 
 #include <iostream>
 
-/*! @brief Returns the window whose context is current on the calling thread.
- *
- *  This function returns the window whose context is current on the calling
- *  thread.
- *
- *  @return The window whose context is current, or `NULL` if no window's
- *  context is current.
- *
- *  @remarks This function may be called from secondary threads.
- *
- *  @sa glfwMakeContextCurrent
- *
- *  @ingroup context
- */
-GLFWAPI GLFWwindow* glfwGetCurrentContext(void);
+GLFWAPI GLFWwindow* glfwGetCurrentContext(void) {
+  stubber::register_call("glfwGetCurrentContext", {});
+  return stubber::get_result<GLFWwindow*>("glfwGetCurrentContext");
+}
 

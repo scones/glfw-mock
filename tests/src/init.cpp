@@ -1,21 +1,23 @@
 /*
  * init.cpp
  *
- *  Created on: 21.07.2013
+ *  Created on: 23.07.2013
  *      Author: scn
  */
 
-#include <GL/glfw.h>
+
+#include <GLFW/glfw3.h>
 
 #include "base_fixture.h"
-
 
 class init_test : public base_fixture {
   protected:
 
+  int m_result;
   void SetUp() {
     base_fixture::SetUp();
-    stubber::register_function_int_result("glfwInit", GL_TRUE);
+    m_result = 5;
+    stubber::register_function_result("glfwInit", m_result);
   }
 
   int call() {
@@ -24,13 +26,17 @@ class init_test : public base_fixture {
 };
 
 
-TEST_F(init_test, returns_gl_true) {
-  ASSERT_EQ(GL_TRUE, call());
+TEST_F(init_test, is_reachable) {
+  call();
+  auto invocation_count = stub->function_calls().size();
+  ASSERT_EQ(1, invocation_count);
+
+  auto first_invocation = stub->function_calls().front();
+  ASSERT_EQ(first_invocation.name(), "glfwInit");
 }
 
 
-TEST_F(init_test, returns_gl_false_on_failure) {
-  stubber::register_function_int_result("glfwInit", GL_FALSE);
-  ASSERT_EQ(GL_FALSE, call());
+TEST_F(init_test, returns_correctly) {
+  ASSERT_EQ(m_result, call());
 }
 

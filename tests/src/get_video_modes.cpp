@@ -1,33 +1,35 @@
 /*
  * get_video_modes.cpp
  *
- *  Created on: 21.07.2013
+ *  Created on: 23.07.2013
  *      Author: scn
  */
 
 
-#include <GL/glfw.h>
+#include <GLFW/glfw3.h>
 
 #include "base_fixture.h"
-
 
 class get_video_modes_test : public base_fixture {
   protected:
 
+  const GLFWvidmode* m_result;
   void SetUp() {
     base_fixture::SetUp();
-    stubber::register_function_int_result("glfwGetVideoModes", GL_TRUE);
+    m_result = (const GLFWvidmode*) 9;
+    stubber::register_function_result("glfwGetVideoModes", m_result);
   }
 
-  int call(GLFWvidmode *list, int maxcount) {
-    return glfwGetVideoModes(list, maxcount);
+  const GLFWvidmode* call(GLFWmonitor* monitor, int* count) {
+    return glfwGetVideoModes(monitor, count);
   }
 };
 
 
 TEST_F(get_video_modes_test, is_reachable) {
-  GLFWvidmode foo;
-  call(&foo, 1);
+  auto monitor = (GLFWmonitor*)5;
+  int count = 2;
+  call(monitor, &count);
   auto invocation_count = stub->function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
@@ -37,16 +39,17 @@ TEST_F(get_video_modes_test, is_reachable) {
 
 
 TEST_F(get_video_modes_test, has_correct_params) {
-  GLFWvidmode foo;
-  call(&foo, 2);
+  auto monitor = (GLFWmonitor*)4;
+  int count = 2;
+  call(monitor, &count);
   auto first_invocation = stub->function_calls().front();
-  ASSERT_EQ(first_invocation.param("list"), t_arg(&foo));
-  ASSERT_EQ(first_invocation.param("maxcount"), "2");
+  ASSERT_EQ(first_invocation.param("monitor"), t_arg(monitor));
+  ASSERT_EQ(first_invocation.param("count"), t_arg(&count));
 }
 
-
 TEST_F(get_video_modes_test, returns_correctly) {
-  GLFWvidmode foo;
-  ASSERT_EQ(GL_TRUE, call(&foo, 3));
+  auto monitor = (GLFWmonitor*)3;
+  int count = 2;
+  ASSERT_EQ(m_result, call(monitor, &count));
 }
 

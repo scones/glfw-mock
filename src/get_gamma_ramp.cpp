@@ -11,17 +11,10 @@
 
 #include <iostream>
 
-/*! @brief Retrieves the current gamma ramp for the specified monitor.
- *
- *  This function retrieves the current gamma ramp of the specified monitor.
- *
- *  @param[in] monitor The monitor to query.
- *  @return The current gamma ramp, or `NULL` if an error occurred.
- *
- *  @note The value arrays of the returned ramp are allocated and freed by GLFW.
- *  You should not free them yourself.
- *
- *  @ingroup monitor
- */
-GLFWAPI const GLFWgammaramp* glfwGetGammaRamp(GLFWmonitor* monitor);
+GLFWAPI const GLFWgammaramp* glfwGetGammaRamp(GLFWmonitor* monitor) {
+  stubber::register_call("glfwGetGammaRamp", {
+    {"monitor", t_arg(monitor)}
+  });
+  return stubber::get_result<const GLFWgammaramp*>("glfwGetGammaRamp");
+}
 

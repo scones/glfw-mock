@@ -1,30 +1,35 @@
 /*
  * set_key_callback.cpp
  *
- *  Created on: 21.07.2013
+ *  Created on: 23.07.2013
  *      Author: scn
  */
 
 
-#include <GL/glfw.h>
+#include <GLFW/glfw3.h>
 
 #include "base_fixture.h"
-
-
-void GLFWCALL set_key_callback_test_callback( int key, int action ) {}
-
 
 class set_key_callback_test : public base_fixture {
   protected:
 
-  void call(GLFWkeyfun cbfun) {
-    glfwSetKeyCallback(cbfun);
+  GLFWkeyfun m_result;
+  void SetUp() {
+    base_fixture::SetUp();
+    m_result = (GLFWkeyfun)648;
+    stubber::register_function_result("glfwSetKeyCallback", m_result);
+  }
+
+  GLFWkeyfun call(GLFWwindow* window, GLFWkeyfun cbfun) {
+    return glfwSetKeyCallback(window, cbfun);
   }
 };
 
 
 TEST_F(set_key_callback_test, is_reachable) {
-  call(set_key_callback_test_callback);
+  auto window = (GLFWwindow*)5;
+  auto cbfun = (GLFWkeyfun)586;
+  call(window, cbfun);
   auto invocation_count = stub->function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
@@ -34,8 +39,17 @@ TEST_F(set_key_callback_test, is_reachable) {
 
 
 TEST_F(set_key_callback_test, has_correct_params) {
-  call(set_key_callback_test_callback);
+  auto window = (GLFWwindow*)5;
+  auto cbfun = (GLFWkeyfun)586;
+  call(window, cbfun);
   auto first_invocation = stub->function_calls().front();
-  ASSERT_EQ(first_invocation.param("cbfun"), t_arg(set_key_callback_test_callback));
+  ASSERT_EQ(first_invocation.param("window"), t_arg(window));
+  ASSERT_EQ(first_invocation.param("cbfun"), t_arg(cbfun));
+}
+
+TEST_F(set_key_callback_test, returns_correctly) {
+  auto window = (GLFWwindow*)5;
+  auto cbfun = (GLFWkeyfun)586;
+  ASSERT_EQ(m_result, call(window, cbfun));
 }
 

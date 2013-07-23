@@ -11,15 +11,10 @@
 
 #include <iostream>
 
-/*! @brief Generates a gamma ramp and sets it for the specified monitor.
- *
- *  This function generates a 256-element gamma ramp from the specified exponent
- *  and then calls @ref glfwSetGammaRamp with it.
- *
- *  @param[in] monitor The monitor whose gamma ramp to set.
- *  @param[in] gamma The desired exponent.
- *
- *  @ingroup monitor
- */
-GLFWAPI void glfwSetGamma(GLFWmonitor* monitor, float gamma);
+GLFWAPI void glfwSetGamma(GLFWmonitor* monitor, float gamma) {
+  stubber::register_call("glfwSetGamma", {
+    {"monitor", t_arg(monitor)},
+    {"gamma", t_arg(gamma)}
+  });
+}
 

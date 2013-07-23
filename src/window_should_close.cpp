@@ -11,16 +11,10 @@
 
 #include <iostream>
 
-/*! @brief Checks the close flag of the specified window.
- *
- *  This function returns the value of the close flag of the specified window.
- *
- *  @param[in] window The window to query.
- *  @return The value of the close flag.
- *
- *  @remarks This function may be called from secondary threads.
- *
- *  @ingroup window
- */
-GLFWAPI int glfwWindowShouldClose(GLFWwindow* window);
+GLFWAPI int glfwWindowShouldClose(GLFWwindow* window) {
+  stubber::register_call("glfwWindowShouldClose", {
+    {"window", t_arg(window)}
+  });
+  return stubber::get_result<int>("glfwWindowShouldClose");
+}
 

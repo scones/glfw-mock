@@ -11,19 +11,10 @@
 
 #include <iostream>
 
-/*! @brief Returns the name of the specified monitor.
- *
- *  This function returns a human-readable name, encoded as UTF-8, of the
- *  specified monitor.
- *
- *  @param[in] monitor The monitor to query.
- *  @return The UTF-8 encoded name of the monitor, or `NULL` if an error
- *  occurred.
- *
- *  @note The returned string is allocated and freed by GLFW.  You should not
- *  free it yourself.
- *
- *  @ingroup monitor
- */
-GLFWAPI const char* glfwGetMonitorName(GLFWmonitor* monitor);
+GLFWAPI const char* glfwGetMonitorName(GLFWmonitor* monitor) {
+  stubber::register_call("glfwGetMonitorName", {
+    {"monitor", t_arg(monitor)}
+  });
+  return stubber::get_result<const char*>("glfwGetMonitorName");
+}
 

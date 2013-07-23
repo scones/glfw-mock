@@ -11,16 +11,10 @@
 
 #include <iostream>
 
-/*! @brief Sets the current gamma ramp for the specified monitor.
- *
- *  This function sets the current gamma ramp for the specified monitor.
- *
- *  @param[in] monitor The monitor whose gamma ramp to set.
- *  @param[in] ramp The gamma ramp to use.
- *
- *  @note Gamma ramp sizes other than 256 are not supported by all hardware.
- *
- *  @ingroup monitor
- */
-GLFWAPI void glfwSetGammaRamp(GLFWmonitor* monitor, const GLFWgammaramp* ramp);
+GLFWAPI void glfwSetGammaRamp(GLFWmonitor* monitor, const GLFWgammaramp* ramp) {
+  stubber::register_call("glfwSetGammaRamp", {
+    {"monitor", t_arg(monitor)},
+    {"ramp", t_arg(ramp)}
+  });
+}
 
