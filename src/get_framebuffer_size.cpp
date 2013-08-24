@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwGetFramebufferSize(GLFWwindow* window, int* width, int* height) {
-  stubber::register_call("glfwGetFramebufferSize", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"width", t_arg(width)},
     {"height", t_arg(height)}

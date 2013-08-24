@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwSetClipboardString(GLFWwindow* window, const char* string) {
-  stubber::register_call("glfwSetClipboardString", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"string", t_arg(string)}
   });

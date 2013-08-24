@@ -17,7 +17,7 @@ class get_key_test : public base_fixture {
   void SetUp() {
     base_fixture::SetUp();
     m_result = 3;
-    stubber::register_function_result("glfwGetKey", m_result);
+    s_stub.register_function_result("glfwGetKey", m_result);
   }
 
   int call(GLFWwindow* window, int key) {
@@ -30,10 +30,10 @@ TEST_F(get_key_test, is_reachable) {
   auto window = (GLFWwindow*)5;
   int key = 1;
   call(window, key);
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwGetKey");
 }
 
@@ -42,7 +42,7 @@ TEST_F(get_key_test, has_correct_params) {
   auto window = (GLFWwindow*)5;
   int key = 1;
   call(window, key);
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.param("window"), t_arg(window));
   ASSERT_EQ(first_invocation.param("key"), t_arg(key));
 }

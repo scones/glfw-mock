@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI double glfwGetTime(void) {
-  stubber::register_call("glfwGetTime", {});
-  return stubber::get_result<double>("glfwGetTime");
+  s_stub.register_call(__FUNCTION__, {});
+  return s_stub.get_result<double>(__FUNCTION__);
 }
 

@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI const float* glfwGetJoystickAxes(int joy, int* count) {
-  stubber::register_call("glfwGetJoystickAxes", {
+  s_stub.register_call(__FUNCTION__, {
     {"joy", t_arg(joy)},
     {"count", t_arg(count)}
   });
-  return stubber::get_result<const float*>("glfwGetJoystickAxes");
+  return s_stub.get_result<const float*>(__FUNCTION__);
 }
 

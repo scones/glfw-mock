@@ -23,10 +23,10 @@ class set_clipboard_string_test : public base_fixture {
 TEST_F(set_clipboard_string_test, is_reachable) {
   auto window = (GLFWwindow*)5;
   call(window, "foo");
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwSetClipboardString");
 }
 
@@ -34,7 +34,7 @@ TEST_F(set_clipboard_string_test, is_reachable) {
 TEST_F(set_clipboard_string_test, has_correct_params) {
   auto window = (GLFWwindow*)4;
   call(window, "bar");
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.param("window"), t_arg(window));
   ASSERT_EQ(first_invocation.param("string"), t_arg("bar"));
 }

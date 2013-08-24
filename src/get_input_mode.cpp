@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI int glfwGetInputMode(GLFWwindow* window, int mode) {
-  stubber::register_call("glfwGetInputMode", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"mode", t_arg(mode)}
   });
-  return stubber::get_result<int>("glfwGetInputMode");
+  return s_stub.get_result<int>(__FUNCTION__);
 }
 

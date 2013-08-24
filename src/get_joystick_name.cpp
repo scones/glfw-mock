@@ -12,9 +12,9 @@
 #include <iostream>
 
 GLFWAPI const char* glfwGetJoystickName(int joy) {
-  stubber::register_call("glfwGetJoystickName", {
+  s_stub.register_call(__FUNCTION__, {
     {"joy", t_arg(joy)}
   });
-  return stubber::get_result<const char*>("glfwGetJoystickName");
+  return s_stub.get_result<const char*>(__FUNCTION__);
 }
 

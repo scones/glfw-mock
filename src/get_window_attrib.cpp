@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI int glfwGetWindowAttrib(GLFWwindow* window, int attrib) {
-  stubber::register_call("glfwGetWindowAttrib", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"attrib", t_arg(attrib)}
   });
-  return stubber::get_result<int>("glfwGetWindowAttrib");
+  return s_stub.get_result<int>(__FUNCTION__);
 }
 

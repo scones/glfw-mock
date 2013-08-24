@@ -28,7 +28,7 @@ $(SHARED_TARGET): $(OBJECTS_LIB)
 
 
 check: $(STATIC_TARGET)
-	make -C ./tests check
+	+make -C ./tests check
 
 
 .cpp.o:

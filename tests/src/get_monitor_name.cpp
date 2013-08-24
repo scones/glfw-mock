@@ -17,7 +17,7 @@ class get_monitor_name_test : public base_fixture {
   void SetUp() {
     base_fixture::SetUp();
     m_result = "foo";
-    stubber::register_function_result("glfwGetMonitorName", m_result);
+    s_stub.register_function_result("glfwGetMonitorName", m_result);
   }
 
   const char* call(GLFWmonitor* monitor) {
@@ -29,10 +29,10 @@ class get_monitor_name_test : public base_fixture {
 TEST_F(get_monitor_name_test, is_reachable) {
   auto monitor = (GLFWmonitor*)5;
   call(monitor);
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwGetMonitorName");
 }
 
@@ -40,7 +40,7 @@ TEST_F(get_monitor_name_test, is_reachable) {
 TEST_F(get_monitor_name_test, has_correct_params) {
   auto monitor = (GLFWmonitor*)4;
   call(monitor);
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.param("monitor"), t_arg(monitor));
 }
 

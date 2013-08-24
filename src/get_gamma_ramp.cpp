@@ -12,9 +12,9 @@
 #include <iostream>
 
 GLFWAPI const GLFWgammaramp* glfwGetGammaRamp(GLFWmonitor* monitor) {
-  stubber::register_call("glfwGetGammaRamp", {
+  s_stub.register_call(__FUNCTION__, {
     {"monitor", t_arg(monitor)}
   });
-  return stubber::get_result<const GLFWgammaramp*>("glfwGetGammaRamp");
+  return s_stub.get_result<const GLFWgammaramp*>(__FUNCTION__);
 }
 

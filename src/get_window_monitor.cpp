@@ -12,9 +12,9 @@
 #include <iostream>
 
 GLFWAPI GLFWmonitor* glfwGetWindowMonitor(GLFWwindow* window) {
-  stubber::register_call("glfwGetWindowMonitor", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)}
   });
-  return stubber::get_result<GLFWmonitor*>("glfwGetWindowMonitor");
+  return s_stub.get_result<GLFWmonitor*>(__FUNCTION__);
 }
 

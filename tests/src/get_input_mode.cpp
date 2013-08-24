@@ -17,7 +17,7 @@ class get_input_mode_test : public base_fixture {
   void SetUp() {
     base_fixture::SetUp();
     m_result = 1;
-    stubber::register_function_result("glfwGetInputMode", m_result);
+    s_stub.register_function_result("glfwGetInputMode", m_result);
   }
 
   int call(GLFWwindow* window, int mode) {
@@ -29,10 +29,10 @@ class get_input_mode_test : public base_fixture {
 TEST_F(get_input_mode_test, is_reachable) {
   auto window = (GLFWwindow*)5;
   call(window, 5);
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwGetInputMode");
 }
 
@@ -40,7 +40,7 @@ TEST_F(get_input_mode_test, is_reachable) {
 TEST_F(get_input_mode_test, has_correct_params) {
   auto window = (GLFWwindow*)4;
   call(window, 4);
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.param("window"), t_arg(window));
   ASSERT_EQ(first_invocation.param("mode"), t_arg(4));
 }

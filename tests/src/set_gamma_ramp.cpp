@@ -23,10 +23,10 @@ TEST_F(set_gamma_ramp_test, is_reachable) {
   auto window = (GLFWmonitor*)5;
   auto ramp = (GLFWgammaramp*)1834;
   call(window, ramp);
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwSetGammaRamp");
 }
 
@@ -35,7 +35,7 @@ TEST_F(set_gamma_ramp_test, has_correct_params) {
   auto window = (GLFWmonitor*)5;
   auto ramp = (GLFWgammaramp*)1834;
   call(window, ramp);
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.param("monitor"), t_arg(window));
   ASSERT_EQ(first_invocation.param("ramp"), t_arg(ramp));
 }

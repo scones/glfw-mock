@@ -12,6 +12,6 @@
 #include <iostream>
 
 GLFWAPI void glfwPollEvents(void) {
-  stubber::register_call("glfwPollEvents", {});
+  s_stub.register_call(__FUNCTION__, {});
 }
 

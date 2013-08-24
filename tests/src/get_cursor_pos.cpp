@@ -17,7 +17,7 @@ class get_cursor_pos_test : public base_fixture {
   void SetUp() {
     base_fixture::SetUp();
     m_result = "foo";
-    stubber::register_function_result("glfwGetCursorPos", m_result);
+    s_stub.register_function_result("glfwGetCursorPos", m_result);
   }
 
   void call(GLFWwindow* window, double* xpos, double* ypos) {
@@ -31,10 +31,10 @@ TEST_F(get_cursor_pos_test, is_reachable) {
   double xpos = 1.0;
   double ypos = 2.0;
   call(window, &xpos, &ypos);
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwGetCursorPos");
 }
 
@@ -44,7 +44,7 @@ TEST_F(get_cursor_pos_test, has_correct_params) {
   double xpos = 1.0;
   double ypos = 2.0;
   call(window, &xpos, &ypos);
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.param("window"), t_arg(window));
   ASSERT_EQ(first_invocation.param("xpos"), t_arg(&xpos));
   ASSERT_EQ(first_invocation.param("ypos"), t_arg(&ypos));

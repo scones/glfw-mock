@@ -17,7 +17,7 @@ class get_video_mode_test : public base_fixture {
   void SetUp() {
     base_fixture::SetUp();
     m_result = (const GLFWvidmode*) 8;
-    stubber::register_function_result("glfwGetVideoMode", m_result);
+    s_stub.register_function_result("glfwGetVideoMode", m_result);
   }
 
   const GLFWvidmode* call(GLFWmonitor* monitor) {
@@ -29,10 +29,10 @@ class get_video_mode_test : public base_fixture {
 TEST_F(get_video_mode_test, is_reachable) {
   auto monitor = (GLFWmonitor*)5;
   call(monitor);
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwGetVideoMode");
 }
 
@@ -40,7 +40,7 @@ TEST_F(get_video_mode_test, is_reachable) {
 TEST_F(get_video_mode_test, has_correct_params) {
   auto monitor = (GLFWmonitor*)5;
   call(monitor);
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.param("monitor"), t_arg(monitor));
 }
 

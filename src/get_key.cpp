@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI int glfwGetKey(GLFWwindow* window, int key) {
-  stubber::register_call("glfwGetKey", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"key", t_arg(key)}
   });
-  return stubber::get_result<int>("glfwGetKey");
+  return s_stub.get_result<int>(__FUNCTION__);
 }
 

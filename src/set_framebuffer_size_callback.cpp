@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI GLFWframebuffersizefun glfwSetFramebufferSizeCallback(GLFWwindow* window, GLFWframebuffersizefun cbfun) {
-  stubber::register_call("glfwSetFramebufferSizeCallback", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"cbfun", t_arg(cbfun)}
   });
-  return stubber::get_result<GLFWframebuffersizefun>("glfwSetFramebufferSizeCallback");
+  return s_stub.get_result<GLFWframebuffersizefun>(__FUNCTION__);
 }
 

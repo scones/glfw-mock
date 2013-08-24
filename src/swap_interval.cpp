@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwSwapInterval(int interval) {
-  stubber::register_call("glfwSwapInterval", {
+  s_stub.register_call(__FUNCTION__, {
     {"interval", t_arg(interval)}
   });
 }

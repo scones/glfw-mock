@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI GLFWwindowsizefun glfwSetWindowSizeCallback(GLFWwindow* window, GLFWwindowsizefun cbfun) {
-  stubber::register_call("glfwSetWindowSizeCallback", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"cbfun", t_arg(cbfun)}
   });
-  return stubber::get_result<GLFWwindowsizefun>("glfwSetWindowSizeCallback");
+  return s_stub.get_result<GLFWwindowsizefun>(__FUNCTION__);
 }
 

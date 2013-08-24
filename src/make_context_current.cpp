@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwMakeContextCurrent(GLFWwindow* window) {
-  stubber::register_call("glfwMakeContextCurrent", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)}
   });
 }

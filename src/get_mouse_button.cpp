@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI int glfwGetMouseButton(GLFWwindow* window, int button) {
-  stubber::register_call("glfwGetMouseButton", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"button", t_arg(button)}
   });
-  return stubber::get_result<int>("glfwGetMouseButton");
+  return s_stub.get_result<int>(__FUNCTION__);
 }
 

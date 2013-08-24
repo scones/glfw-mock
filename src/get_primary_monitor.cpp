@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI GLFWmonitor* glfwGetPrimaryMonitor(void) {
-  stubber::register_call("glfwGetPrimaryMonitor", {});
-  return stubber::get_result<GLFWmonitor*>("glfwGetPrimaryMonitor");
+  s_stub.register_call(__FUNCTION__, {});
+  return s_stub.get_result<GLFWmonitor*>(__FUNCTION__);
 }
 

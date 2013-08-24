@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI const unsigned char* glfwGetJoystickButtons(int joy, int* count) {
-  stubber::register_call("glfwGetJoystickButtons", {
+  s_stub.register_call(__FUNCTION__, {
     {"joy", t_arg(joy)},
     {"count", t_arg(count)}
   });
-  return stubber::get_result<const unsigned char*>("glfwGetJoystickButtons");
+  return s_stub.get_result<const unsigned char*>(__FUNCTION__);
 }
 

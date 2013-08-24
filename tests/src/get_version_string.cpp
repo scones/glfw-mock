@@ -17,7 +17,7 @@ class get_version_string_test : public base_fixture {
   void SetUp() {
     base_fixture::SetUp();
     m_result = "foo";
-    stubber::register_function_result("glfwGetVersionString", m_result);
+    s_stub.register_function_result("glfwGetVersionString", m_result);
   }
 
   const char* call() {
@@ -28,10 +28,10 @@ class get_version_string_test : public base_fixture {
 
 TEST_F(get_version_string_test, is_reachable) {
   call();
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwGetVersionString");
 }
 

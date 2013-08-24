@@ -24,10 +24,10 @@ TEST_F(get_monitor_physical_size_test, is_reachable) {
   int width = 1;
   int height = 2;
   call(monitor, &width, &height);
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwGetMonitorPhysicalSize");
 }
 
@@ -37,7 +37,7 @@ TEST_F(get_monitor_physical_size_test, has_correct_params) {
   int width = 1;
   int height = 2;
   call(monitor, &width, &height);
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.param("monitor"), t_arg(monitor));
   ASSERT_EQ(first_invocation.param("width"), t_arg(&width));
   ASSERT_EQ(first_invocation.param("height"), t_arg(&height));

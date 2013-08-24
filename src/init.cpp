@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI int glfwInit(void) {
-  stubber::register_call("glfwInit", {});
-  return stubber::get_result<int>("glfwInit");
+  s_stub.register_call(__FUNCTION__, {});
+  return s_stub.get_result<int>(__FUNCTION__);
 }
 

@@ -15,19 +15,17 @@
 struct base_fixture : public ::testing::Test {
   protected:
 
-  base_fixture() : ::testing::Test(), stub(stubber::get_stub()) {
+  base_fixture() : ::testing::Test() {
   }
   virtual ~base_fixture() {
   }
 
   void SetUp() {
-    stubber::reset();
+    s_stub.reset();
   }
 
   void TearDown() {
   }
-
-  stubber* stub;
 };
 
 #endif /* BASE_FIXTURE_H_ */

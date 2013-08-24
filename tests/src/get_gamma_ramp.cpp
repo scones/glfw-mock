@@ -16,7 +16,7 @@ class get_gamma_ramp_test : public base_fixture {
   void SetUp() {
     base_fixture::SetUp();
     m_result = (GLFWgammaramp*)1;
-    stubber::register_function_result("glfwGetGammaRamp", m_result);
+    s_stub.register_function_result("glfwGetGammaRamp", m_result);
   }
 
   const GLFWgammaramp* call(GLFWmonitor* monitor) {
@@ -28,10 +28,10 @@ class get_gamma_ramp_test : public base_fixture {
 TEST_F(get_gamma_ramp_test, is_reachable) {
   auto monitor = (GLFWmonitor*)5;
   call(monitor);
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwGetGammaRamp");
 }
 
@@ -39,7 +39,7 @@ TEST_F(get_gamma_ramp_test, is_reachable) {
 TEST_F(get_gamma_ramp_test, has_correct_params) {
   auto monitor = (GLFWmonitor*)4;
   call(monitor);
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.param("monitor"), t_arg(monitor));
 }
 

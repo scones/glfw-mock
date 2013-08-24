@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI GLFWwindowiconifyfun glfwSetWindowIconifyCallback(GLFWwindow* window, GLFWwindowiconifyfun cbfun) {
-  stubber::register_call("glfwSetWindowIconifyCallback", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"cbfun", t_arg(cbfun)}
   });
-  return stubber::get_result<GLFWwindowiconifyfun>("glfwSetWindowIconifyCallback");
+  return s_stub.get_result<GLFWwindowiconifyfun>(__FUNCTION__);
 }
 

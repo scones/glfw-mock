@@ -12,9 +12,9 @@
 #include <iostream>
 
 GLFWAPI GLFWglproc glfwGetProcAddress(const char* procname) {
-  stubber::register_call("glfwGetProcAddress", {
+  s_stub.register_call(__FUNCTION__, {
     {"procname", t_arg(procname)}
   });
-  return stubber::get_result<GLFWglproc>("glfwGetProcAddress");
+  return s_stub.get_result<GLFWglproc>(__FUNCTION__);
 }
 

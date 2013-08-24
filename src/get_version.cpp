@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwGetVersion(int* major, int* minor, int* rev) {
-  stubber::register_call("glfwGetVersion", {
+  s_stub.register_call(__FUNCTION__, {
     {"major", t_arg(major)},
     {"minor", t_arg(minor)},
     {"rev", t_arg(rev)}

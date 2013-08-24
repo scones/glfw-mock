@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI const char* glfwGetVersionString(void) {
-  stubber::register_call("glfwGetVersionString", {});
-  return stubber::get_result<const char*>("glfwGetVersionString");
+  s_stub.register_call(__FUNCTION__, {});
+  return s_stub.get_result<const char*>(__FUNCTION__);
 }
 

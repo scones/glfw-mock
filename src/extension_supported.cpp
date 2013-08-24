@@ -12,9 +12,9 @@
 #include <iostream>
 
 GLFWAPI int glfwExtensionSupported(const char* extension) {
-  stubber::register_call("glfwExtensionSupported", {
+  s_stub.register_call(__FUNCTION__, {
     {"extension", t_arg(extension)}
   });
-  return stubber::get_result<int>("glfwExtensionSupported");
+  return s_stub.get_result<int>(__FUNCTION__);
 }
 

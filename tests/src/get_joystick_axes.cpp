@@ -17,7 +17,7 @@ class get_joystick_axes_test : public base_fixture {
   void SetUp() {
     base_fixture::SetUp();
     m_result = (const float*)1;
-    stubber::register_function_result("glfwGetJoystickAxes", m_result);
+    s_stub.register_function_result("glfwGetJoystickAxes", m_result);
   }
 
   const float* call(int joy, int* count) {
@@ -29,10 +29,10 @@ class get_joystick_axes_test : public base_fixture {
 TEST_F(get_joystick_axes_test, is_reachable) {
   int count = 1;
   call(2, &count);
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwGetJoystickAxes");
 }
 
@@ -40,7 +40,7 @@ TEST_F(get_joystick_axes_test, is_reachable) {
 TEST_F(get_joystick_axes_test, has_correct_params) {
   int count = 1;
   call(2, &count);
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.param("joy"), t_arg(2));
   ASSERT_EQ(first_invocation.param("count"), t_arg(&count));
 }

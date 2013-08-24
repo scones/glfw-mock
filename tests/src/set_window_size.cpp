@@ -24,10 +24,10 @@ TEST_F(set_window_size_test, is_reachable) {
   int width = 134;
   int height = 8754;
   call(window, width, height);
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwSetWindowSize");
 }
 
@@ -37,7 +37,7 @@ TEST_F(set_window_size_test, has_correct_params) {
   int width = 134;
   int height = 8754;
   call(window, width, height);
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.param("window"), t_arg(window));
   ASSERT_EQ(first_invocation.param("width"), t_arg(width));
   ASSERT_EQ(first_invocation.param("height"), t_arg(height));

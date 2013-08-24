@@ -12,9 +12,9 @@
 #include <iostream>
 
 GLFWAPI const GLFWvidmode* glfwGetVideoMode(GLFWmonitor* monitor) {
-  stubber::register_call("glfwGetVideoMode", {
+  s_stub.register_call(__FUNCTION__, {
     {"monitor", t_arg(monitor)}
   });
-  return stubber::get_result<const GLFWvidmode*>("glfwGetVideoMode");
+  return s_stub.get_result<const GLFWvidmode*>(__FUNCTION__);
 }
 

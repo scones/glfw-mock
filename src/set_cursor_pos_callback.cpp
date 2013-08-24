@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI GLFWcursorposfun glfwSetCursorPosCallback(GLFWwindow* window, GLFWcursorposfun cbfun) {
-  stubber::register_call("glfwSetCursorPosCallback", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"cbfun", t_arg(cbfun)}
   });
-  return stubber::get_result<GLFWcursorposfun>("glfwSetCursorPosCallback");
+  return s_stub.get_result<GLFWcursorposfun>(__FUNCTION__);
 }
 

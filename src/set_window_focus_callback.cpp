@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI GLFWwindowfocusfun glfwSetWindowFocusCallback(GLFWwindow* window, GLFWwindowfocusfun cbfun) {
-  stubber::register_call("glfwSetWindowFocusCallback", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"cbfun", t_arg(cbfun)}
   });
-  return stubber::get_result<GLFWwindowfocusfun>("glfwSetWindowFocusCallback");
+  return s_stub.get_result<GLFWwindowfocusfun>(__FUNCTION__);
 }
 

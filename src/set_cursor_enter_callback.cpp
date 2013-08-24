@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI GLFWcursorenterfun glfwSetCursorEnterCallback(GLFWwindow* window, GLFWcursorenterfun cbfun) {
-  stubber::register_call("glfwSetCursorEnterCallback", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"cbfun", t_arg(cbfun)}
   });
-  return stubber::get_result<GLFWcursorenterfun>("glfwSetCursorEnterCallback");
+  return s_stub.get_result<GLFWcursorenterfun>(__FUNCTION__);
 }
 

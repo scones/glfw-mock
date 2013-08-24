@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwGetWindowPos(GLFWwindow* window, int* xpos, int* ypos) {
-  stubber::register_call("glfwGetWindowPos", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"xpos", t_arg(xpos)},
     {"ypos", t_arg(ypos)}

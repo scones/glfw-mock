@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwWindowHint(int target, int hint) {
-  stubber::register_call("glfwWindowHint", {
+  s_stub.register_call(__FUNCTION__, {
     {"target", t_arg(target)},
     {"hint", t_arg(hint)}
   });

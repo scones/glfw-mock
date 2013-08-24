@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI GLFWwindow* glfwGetCurrentContext(void) {
-  stubber::register_call("glfwGetCurrentContext", {});
-  return stubber::get_result<GLFWwindow*>("glfwGetCurrentContext");
+  s_stub.register_call(__FUNCTION__, {});
+  return s_stub.get_result<GLFWwindow*>(__FUNCTION__);
 }
 

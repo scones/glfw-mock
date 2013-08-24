@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwDestroyWindow(GLFWwindow* window) {
-  stubber::register_call("glfwDestroyWindow", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)}
   });
 }

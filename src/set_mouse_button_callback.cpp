@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI GLFWmousebuttonfun glfwSetMouseButtonCallback(GLFWwindow* window, GLFWmousebuttonfun cbfun) {
-  stubber::register_call("glfwSetMouseButtonCallback", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"cbfun", t_arg(cbfun)}
   });
-  return stubber::get_result<GLFWmousebuttonfun>("glfwSetMouseButtonCallback");
+  return s_stub.get_result<GLFWmousebuttonfun>(__FUNCTION__);
 }
 

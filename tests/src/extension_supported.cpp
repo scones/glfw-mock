@@ -15,7 +15,7 @@ class extension_supported_test : public base_fixture {
 
   void SetUp() {
     base_fixture::SetUp();
-    stubber::register_function_result("glfwExtensionSupported", 1);
+    s_stub.register_function_result("glfwExtensionSupported", 1);
   }
 
   int call(const char* extension) {
@@ -26,17 +26,17 @@ class extension_supported_test : public base_fixture {
 
 TEST_F(extension_supported_test, is_reachable) {
   call("foo");
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwExtensionSupported");
 }
 
 
 TEST_F(extension_supported_test, has_correct_params) {
   call("foo");
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.param("extension"), t_arg("foo"));
 }
 

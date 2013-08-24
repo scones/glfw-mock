@@ -12,6 +12,6 @@
 #include <iostream>
 
 GLFWAPI void glfwWaitEvents(void) {
-  stubber::register_call("glfwWaitEvents", {});
+  s_stub.register_call(__FUNCTION__, {});
 }
 

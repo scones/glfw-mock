@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwSetWindowSize(GLFWwindow* window, int width, int height) {
-  stubber::register_call("glfwSetWindowSize", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"width", t_arg(width)},
     {"height", t_arg(height)}

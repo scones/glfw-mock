@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwGetMonitorPhysicalSize(GLFWmonitor* monitor, int* width, int* height) {
-  stubber::register_call("glfwGetMonitorPhysicalSize", {
+  s_stub.register_call(__FUNCTION__, {
     {"monitor", t_arg(monitor)},
     {"width", t_arg(width)},
     {"height", t_arg(height)}

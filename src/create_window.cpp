@@ -12,13 +12,13 @@
 #include <iostream>
 
 GLFWAPI GLFWwindow* glfwCreateWindow(int width, int height, const char* title, GLFWmonitor* monitor, GLFWwindow* share) {
-  stubber::register_call("glfwCreateWindow", {
+  s_stub.register_call(__FUNCTION__, {
       {"width", t_arg(width)},
       {"height", t_arg(height)},
       {"title", t_arg(title)},
       {"monitor", t_arg(monitor)},
       {"share", t_arg(share)}
   });
-  return stubber::get_result<GLFWwindow*>("glfwCreateWindow");
+  return s_stub.get_result<GLFWwindow*>(__FUNCTION__);
 }
 

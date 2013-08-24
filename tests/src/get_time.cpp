@@ -17,7 +17,7 @@ class get_time_test : public base_fixture {
   void SetUp() {
     base_fixture::SetUp();
     m_result = 1.3;
-    stubber::register_function_result("glfwGetTime", m_result);
+    s_stub.register_function_result("glfwGetTime", m_result);
   }
 
   double call() {
@@ -28,10 +28,10 @@ class get_time_test : public base_fixture {
 
 TEST_F(get_time_test, is_reachable) {
   call();
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwGetTime");
 }
 

@@ -17,7 +17,7 @@ class set_monitor_callback_test : public base_fixture {
   void SetUp() {
     base_fixture::SetUp();
     m_result = (GLFWmonitorfun) 764;
-    stubber::register_function_result("glfwSetMonitorCallback", m_result);
+    s_stub.register_function_result("glfwSetMonitorCallback", m_result);
   }
 
   GLFWmonitorfun call(GLFWmonitorfun cbfun) {
@@ -29,10 +29,10 @@ class set_monitor_callback_test : public base_fixture {
 TEST_F(set_monitor_callback_test, is_reachable) {
   auto cbfun = (GLFWmonitorfun)648;
   call(cbfun);
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwSetMonitorCallback");
 }
 
@@ -40,7 +40,7 @@ TEST_F(set_monitor_callback_test, is_reachable) {
 TEST_F(set_monitor_callback_test, has_correct_params) {
   auto cbfun = (GLFWmonitorfun)648;
   call(cbfun);
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.param("cbfun"), t_arg(cbfun));
 }
 

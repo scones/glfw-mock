@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwGetMonitorPos(GLFWmonitor* monitor, int* xpos, int* ypos) {
-  stubber::register_call("glfwGetMonitorPos", {
+  s_stub.register_call(__FUNCTION__, {
     {"monitor", t_arg(monitor)},
     {"xpos", t_arg(xpos)},
     {"ypos", t_arg(ypos)}

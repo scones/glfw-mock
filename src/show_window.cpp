@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwShowWindow(GLFWwindow* window) {
-  stubber::register_call("glfwShowWindow", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)}
   });
 }

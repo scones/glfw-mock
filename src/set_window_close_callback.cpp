@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI GLFWwindowclosefun glfwSetWindowCloseCallback(GLFWwindow* window, GLFWwindowclosefun cbfun) {
-  stubber::register_call("glfwSetWindowCloseCallback", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"cbfun", t_arg(cbfun)}
   });
-  return stubber::get_result<GLFWwindowclosefun>("glfwSetWindowCloseCallback");
+  return s_stub.get_result<GLFWwindowclosefun>(__FUNCTION__);
 }
 

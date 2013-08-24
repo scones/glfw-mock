@@ -12,9 +12,9 @@
 #include <iostream>
 
 GLFWAPI GLFWerrorfun glfwSetErrorCallback(GLFWerrorfun cbfun) {
-  stubber::register_call("glfwSetErrorCallback", {
+  s_stub.register_call(__FUNCTION__, {
     {"cbfun", t_arg(cbfun)}
   });
-  return stubber::get_result<GLFWerrorfun>("glfwSetErrorCallback");
+  return s_stub.get_result<GLFWerrorfun>(__FUNCTION__);
 }
 

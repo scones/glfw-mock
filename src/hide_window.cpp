@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwHideWindow(GLFWwindow* window) {
-  stubber::register_call("glfwHideWindow", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)}
   });
 }

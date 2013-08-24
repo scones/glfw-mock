@@ -24,10 +24,10 @@ TEST_F(set_input_mode_test, is_reachable) {
   int mode = 432;
   int value = 874;
   call(window, mode, value);
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwSetInputMode");
 }
 
@@ -37,7 +37,7 @@ TEST_F(set_input_mode_test, has_correct_params) {
   int mode = 432;
   int value = 874;
   call(window, mode, value);
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.param("window"), t_arg(window));
   ASSERT_EQ(first_invocation.param("mode"), t_arg(mode));
   ASSERT_EQ(first_invocation.param("value"), t_arg(value));

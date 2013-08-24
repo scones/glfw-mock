@@ -12,6 +12,6 @@
 #include <iostream>
 
 GLFWAPI void glfwDefaultWindowHints(void) {
-  stubber::register_call("glfwDefaultWindowHints", {});
+  s_stub.register_call(__FUNCTION__, {});
 }
 

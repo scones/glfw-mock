@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwSetWindowUserPointer(GLFWwindow* window, void* pointer) {
-  stubber::register_call("glfwSetWindowUserPointer", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"pointer", t_arg(pointer)}
   });

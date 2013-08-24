@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwSetWindowTitle(GLFWwindow* window, const char* title) {
-  stubber::register_call("glfwSetWindowTitle", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"title", t_arg(title)}
   });

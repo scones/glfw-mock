@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI GLFWcharfun glfwSetCharCallback(GLFWwindow* window, GLFWcharfun cbfun) {
-  stubber::register_call("glfwSetCharCallback", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"cbfun", t_arg(cbfun)}
   });
-  return stubber::get_result<GLFWcharfun>("glfwSetCharCallback");
+  return s_stub.get_result<GLFWcharfun>(__FUNCTION__);
 }
 

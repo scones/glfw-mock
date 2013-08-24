@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI GLFWscrollfun glfwSetScrollCallback(GLFWwindow* window, GLFWscrollfun cbfun) {
-  stubber::register_call("glfwSetScrollCallback", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"cbfun", t_arg(cbfun)}
   });
-  return stubber::get_result<GLFWscrollfun>("glfwSetScrollCallback");
+  return s_stub.get_result<GLFWscrollfun>(__FUNCTION__);
 }
 

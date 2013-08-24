@@ -12,6 +12,6 @@
 #include <iostream>
 
 GLFWAPI void glfwTerminate(void) {
-  stubber::register_call("glfwTerminate", {});
+  s_stub.register_call(__FUNCTION__, {});
 }
 

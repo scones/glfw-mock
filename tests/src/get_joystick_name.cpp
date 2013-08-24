@@ -17,7 +17,7 @@ class get_joystick_name_test : public base_fixture {
   void SetUp() {
     base_fixture::SetUp();
     m_result = "foo";
-    stubber::register_function_result("glfwGetJoystickName", m_result);
+    s_stub.register_function_result("glfwGetJoystickName", m_result);
   }
 
   const char* call(int joy) {
@@ -29,10 +29,10 @@ class get_joystick_name_test : public base_fixture {
 TEST_F(get_joystick_name_test, is_reachable) {
   int joy = 1;
   call(joy);
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwGetJoystickName");
 }
 
@@ -40,7 +40,7 @@ TEST_F(get_joystick_name_test, is_reachable) {
 TEST_F(get_joystick_name_test, has_correct_params) {
   int joy = 1;
   call(joy);
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.param("joy"), t_arg(joy));
 }
 

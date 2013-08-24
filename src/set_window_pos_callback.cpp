@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI GLFWwindowposfun glfwSetWindowPosCallback(GLFWwindow* window, GLFWwindowposfun cbfun) {
-  stubber::register_call("glfwSetWindowPosCallback", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"cbfun", t_arg(cbfun)}
   });
-  return stubber::get_result<GLFWwindowposfun>("glfwSetWindowPosCallback");
+  return s_stub.get_result<GLFWwindowposfun>(__FUNCTION__);
 }
 

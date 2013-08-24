@@ -12,9 +12,9 @@
 #include <iostream>
 
 GLFWAPI int glfwWindowShouldClose(GLFWwindow* window) {
-  stubber::register_call("glfwWindowShouldClose", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)}
   });
-  return stubber::get_result<int>("glfwWindowShouldClose");
+  return s_stub.get_result<int>(__FUNCTION__);
 }
 

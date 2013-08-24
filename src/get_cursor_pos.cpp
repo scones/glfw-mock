@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwGetCursorPos(GLFWwindow* window, double* xpos, double* ypos) {
-  stubber::register_call("glfwGetCursorPos", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"xpos", t_arg(xpos)},
     {"ypos", t_arg(ypos)}

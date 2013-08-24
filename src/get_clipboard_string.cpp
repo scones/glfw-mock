@@ -12,9 +12,9 @@
 #include <iostream>
 
 GLFWAPI const char* glfwGetClipboardString(GLFWwindow* window) {
-  stubber::register_call("glfwGetClipboardString", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)}
   });
-  return stubber::get_result<const char*>("glfwGetClipboardString");
+  return s_stub.get_result<const char*>(__FUNCTION__);
 }
 

@@ -12,9 +12,9 @@
 #include <iostream>
 
 GLFWAPI const char* glfwGetMonitorName(GLFWmonitor* monitor) {
-  stubber::register_call("glfwGetMonitorName", {
+  s_stub.register_call(__FUNCTION__, {
     {"monitor", t_arg(monitor)}
   });
-  return stubber::get_result<const char*>("glfwGetMonitorName");
+  return s_stub.get_result<const char*>(__FUNCTION__);
 }
 

@@ -17,7 +17,7 @@ class get_proc_address_test : public base_fixture {
   void SetUp() {
     base_fixture::SetUp();
     m_result = (GLFWglproc)7;
-    stubber::register_function_result("glfwGetProcAddress", m_result);
+    s_stub.register_function_result("glfwGetProcAddress", m_result);
   }
 
   GLFWglproc call(const char* procname) {
@@ -28,17 +28,17 @@ class get_proc_address_test : public base_fixture {
 
 TEST_F(get_proc_address_test, is_reachable) {
   call("foo");
-  auto invocation_count = stub->function_calls().size();
+  auto invocation_count = s_stub.function_calls().size();
   ASSERT_EQ(1, invocation_count);
 
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.name(), "glfwGetProcAddress");
 }
 
 
 TEST_F(get_proc_address_test, has_correct_params) {
   call("foo");
-  auto first_invocation = stub->function_calls().front();
+  auto first_invocation = s_stub.function_calls().front();
   ASSERT_EQ(first_invocation.param("procname"), t_arg("foo"));
 }
 

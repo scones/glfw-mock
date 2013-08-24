@@ -12,9 +12,9 @@
 #include <iostream>
 
 GLFWAPI GLFWmonitorfun glfwSetMonitorCallback(GLFWmonitorfun cbfun) {
-  stubber::register_call("glfwSetMonitorCallback", {
+  s_stub.register_call(__FUNCTION__, {
     {"cbfun", t_arg(cbfun)}
   });
-  return stubber::get_result<GLFWmonitorfun>("glfwSetMonitorCallback");
+  return s_stub.get_result<GLFWmonitorfun>(__FUNCTION__);
 }
 

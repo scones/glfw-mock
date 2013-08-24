@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI GLFWwindowrefreshfun glfwSetWindowRefreshCallback(GLFWwindow* window, GLFWwindowrefreshfun cbfun) {
-  stubber::register_call("glfwSetWindowRefreshCallback", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"cbfun", t_arg(cbfun)}
   });
-  return stubber::get_result<GLFWwindowrefreshfun>("glfwSetWindowRefreshCallback");
+  return s_stub.get_result<GLFWwindowrefreshfun>(__FUNCTION__);
 }
 

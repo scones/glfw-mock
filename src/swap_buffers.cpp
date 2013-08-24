@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwSwapBuffers(GLFWwindow* window) {
-  stubber::register_call("glfwSwapBuffers", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)}
   });
 }

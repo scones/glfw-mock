@@ -12,10 +12,10 @@
 #include <iostream>
 
 GLFWAPI GLFWkeyfun glfwSetKeyCallback(GLFWwindow* window, GLFWkeyfun cbfun) {
-  stubber::register_call("glfwSetKeyCallback", {
+  s_stub.register_call(__FUNCTION__, {
     {"window", t_arg(window)},
     {"cbfun", t_arg(cbfun)}
   });
-  return stubber::get_result<GLFWkeyfun>("glfwSetKeyCallback");
+  return s_stub.get_result<GLFWkeyfun>(__FUNCTION__);
 }
 

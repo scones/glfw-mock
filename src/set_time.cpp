@@ -12,7 +12,7 @@
 #include <iostream>
 
 GLFWAPI void glfwSetTime(double time) {
-  stubber::register_call("glfwSetTime", {
+  s_stub.register_call(__FUNCTION__, {
     {"time", t_arg(time)}
   });
 }
