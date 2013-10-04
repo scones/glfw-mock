@@ -9,7 +9,6 @@
 
 #include <GLFW/glfw3.h>
 
-#include <iostream>
 
 GLFWAPI GLFWwindow* glfwCreateWindow(int width, int height, const char* title, GLFWmonitor* monitor, GLFWwindow* share) {
   s_stub.register_call(__FUNCTION__, {
